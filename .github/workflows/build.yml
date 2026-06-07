@@ -30,11 +30,4 @@ jobs:
     - name: Build APK with Buildozer
       run: |
         export PATH=$PATH:~/.local/bin
-        # yes | zwingt Buildozer, alle Android-Lizenzen automatisch zu akzeptieren
-        yes | buildozer android debug
-
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: my-app-apk
-        path: bin/*.apk
+        buildozer android debug
