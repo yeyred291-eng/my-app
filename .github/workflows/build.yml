@@ -7,23 +7,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Get Date
-      id: get-date
-      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
-    - name: Buildozer Action
-      uses: ArtemGovorov/buildozer-action@v1
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        workdir: .
-        buildozer_version: stable
+        python-python-version: '3.11'
 
-    - name: Upload APK
+    - name: Build with Buildozer
+      uses: Enteee/buildozer-action@v2
+      with:
+        buildozer_version: stable
+        command: buildozer android debug
+
+    - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: package-${{ steps.get-date.outputs.date }}
+        name: my-kivy-app
         path: bin/*.apk
