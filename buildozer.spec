@@ -11,10 +11,12 @@ requirements = python3,kivy
 orientation = portrait
 fullscreen = 1
 
-# Android Einstellungen (Festgenagelt auf stabile Versionen)
+# Android Einstellungen - Zwingt Buildozer die passenden Tools zu laden
 android.api = 33
 android.minapi = 21
+android.sdk = 33
 android.ndk = 25c
+android.build_tools_version = 34.0.0
 android.archs = armeabi-v7a, arm64-v8a
 android.allow_backup = True
 
